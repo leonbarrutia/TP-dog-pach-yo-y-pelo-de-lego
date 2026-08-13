@@ -1,0 +1,41 @@
+#include <Wire.h>
+#include <Adafruit_AHTX0.h>
+
+Adafruit_AHTX0 aht;
+
+void setup() {
+  Serial.begin(115200);
+
+  // I2C del ESP32
+  Wire.begin(21, 22);  // SDA = 21, SCL = 22
+
+  Serial.println("Iniciando AHT10...");
+
+  if (!aht.begin()) {
+    Serial.println("ERROR: No se encontro el AHT10.");
+    Serial.println("Revisa las conexiones SDA, SCL, VCC y GND.");
+    while (1) {
+      delay(1000);
+    }
+  }
+
+  Serial.println("AHT10 encontrado correctamente.");
+}
+
+void loop() {
+  sensors_event_t humedad, temperatura;
+
+  aht.getEvent(&humedad, &temperatura);
+
+  Serial.print("Temperatura: ");
+  Serial.print(temperatura.temperature);
+  Serial.println(" °C");
+
+  Serial.print("Humedad: ");
+  Serial.print(humedad.relative_humidity);
+  Serial.println(" %");
+
+  Serial.println("-------------------------");
+
+  delay(2000);
+}
