@@ -1,0 +1,24 @@
+#define RX_PIN 16
+#define TX_PIN 17
+
+void setup() {
+  Serial.begin(115200);
+
+  // Comunicación entre ESP32 y LD2410C
+  Serial2.begin(256000, SERIAL_8N1, RX_PIN, TX_PIN);
+
+  Serial.println("Iniciando HLK-LD2410C...");
+}
+
+void loop() {
+
+  // Mostrar en el Monitor Serie todo lo que envía el sensor
+  while (Serial2.available()) {
+    byte dato = Serial2.read();
+
+    Serial.print(dato, HEX);
+    Serial.print(" ");
+  }
+
+  delay(100);
+}
