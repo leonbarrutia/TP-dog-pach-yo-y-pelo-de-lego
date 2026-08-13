@@ -1,0 +1,22 @@
+#define OPTO_PIN 27
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(OPTO_PIN, INPUT);
+
+  Serial.println("Prueba de entrada optoacoplada PC817C");
+}
+
+void loop() {
+
+  int estado = digitalRead(OPTO_PIN);
+
+  if (estado == HIGH) {
+    Serial.println("SEÑAL 12V DETECTADA");
+  } else {
+    Serial.println("Sin señal de 12V");
+  }
+
+  delay(500);
+}
