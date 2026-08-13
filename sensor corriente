@@ -1,0 +1,41 @@
+#include <Wire.h>
+#include <Adafruit_INA219.h>
+
+Adafruit_INA219 ina219;
+
+void setup() {
+  Serial.begin(115200);
+
+  Wire.begin(21, 22);
+
+  if (!ina219.begin()) {
+    Serial.println("No se encontro el INA219");
+    while (1);
+  }
+
+  Serial.println("INA219 encontrado correctamente");
+}
+
+void loop() {
+
+  float shuntVoltage = ina219.getShuntVoltage_mV();
+  float busVoltage = ina219.getBusVoltage_V();
+  float current_mA = ina219.getCurrent_mA();
+  float power_mW = ina219.getPower_mW();
+
+  Serial.print("Tension: ");
+  Serial.print(busVoltage);
+  Serial.println(" V");
+
+  Serial.print("Corriente: ");
+  Serial.print(current_mA);
+  Serial.println(" mA");
+
+  Serial.print("Potencia: ");
+  Serial.print(power_mW);
+  Serial.println(" mW");
+
+  Serial.println("--------------------");
+
+  delay(1000);
+}
