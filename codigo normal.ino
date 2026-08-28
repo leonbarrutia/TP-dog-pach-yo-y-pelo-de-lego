@@ -89,7 +89,6 @@ void loop() {
     	  Estado = P3;
       }
       break;
-
     case P3:
       mostrarP3();
       if (digitalRead(SW1) == LOW){
@@ -99,7 +98,6 @@ void loop() {
         Estado = MEN_VAR;
       } 
       break;
-
     case MAS_VAR:
       if (digitalRead(SW1) == HIGH){
         Estado = P3;
