@@ -31,6 +31,7 @@ typedef enum {
   P3,
   MAS_VAR,
   MEN_VAR
+  EP3
 } estados_t;
 
 
