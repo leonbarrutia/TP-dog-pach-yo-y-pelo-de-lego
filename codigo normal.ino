@@ -85,7 +85,7 @@ void loop() {
       }
       break;
     case EP2:
-    	if (digitalRead(SW1) == HIGH && digitalRead(SW2) == HIGH){
+      if (digitalRead(SW1) == HIGH && digitalRead(SW2) == HIGH){
     	  Estado = P3;
       }
       break;
