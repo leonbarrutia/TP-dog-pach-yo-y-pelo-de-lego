@@ -102,6 +102,7 @@ void loop() {
     case MAS_VAR:
       if (digitalRead(SW1) == HIGH){
         Estado = P3;
+        ValUmbral = +;
       }  
       if (digitalRead(SW2) == LOW)
         Estado = EP3;  
@@ -110,6 +111,7 @@ void loop() {
     case MEN_VAR:
       if (digitalRead(SW2) == HIGH){
         Estado = P3;
+        ValUmbral = - ;
       }
       if (digitalRead(SW1) == LOW){
         Estado = EP3
