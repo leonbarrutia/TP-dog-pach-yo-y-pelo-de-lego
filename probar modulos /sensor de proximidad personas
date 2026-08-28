@@ -1,24 +1,23 @@
-#define RX_PIN 16
-#define TX_PIN 17
+#define PIN_PRESENCIA 27
 
 void setup() {
   Serial.begin(115200);
 
-  // Comunicación entre ESP32 y LD2410C
-  Serial2.begin(256000, SERIAL_8N1, RX_PIN, TX_PIN);
+  pinMode(PIN_PRESENCIA, INPUT);
 
-  Serial.println("Iniciando HLK-LD2410C...");
+  Serial.println("Sensor LD2410C iniciado");
 }
 
 void loop() {
 
-  // Mostrar en el Monitor Serie todo lo que envía el sensor
-  while (Serial2.available()) {
-    byte dato = Serial2.read();
+  int presencia = digitalRead(PIN_PRESENCIA);
 
-    Serial.print(dato, HEX);
-    Serial.print(" ");
+  if (presencia == HIGH) {
+    Serial.println("PERSONA DETECTADA");
+  } 
+  else {
+    Serial.println("NO HAY PERSONA");
   }
 
-  delay(100);
+  delay(500);
 }
